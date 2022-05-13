@@ -68,7 +68,7 @@ class CategoryController extends Controller
 
     public function search(Request $request){
         $search = $request->input('search');
-        $categories = Category::where('name','like','%'.$search.'%')->orderBy('id')->paginate(5);
+        $categories = Category::where('name','like','%'.$search.'%')->orderBy('id')->get();
         return view(buildView('Admins', 'Categories', 'search'),compact('categories'));
     }
 }

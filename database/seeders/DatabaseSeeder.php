@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Admins\database\seeders\AdminTableSeeder;
 use Illuminate\Database\Seeder;
+use Suppliers\database\seeders\SupplierTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AdminTableSeeder::class);
+        $this->call(SupplierTableSeeder::class);
 
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Admins\Models;
+namespace Suppliers\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Authenticatable
+class Supplier extends Authenticatable
 {
 
 

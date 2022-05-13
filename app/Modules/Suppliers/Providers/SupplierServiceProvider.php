@@ -28,6 +28,6 @@ class SupplierServiceProvider extends ServiceProvider
         //to use translation
         $this->loadTranslationsFrom(loadTranslationFile($module_name), $module_name);
         //to use migration
-        $this->loadMigrationsFrom($module_name);
+        $this->loadMigrationsFrom(loadMigrationsFile($module_name));
     }
 }
