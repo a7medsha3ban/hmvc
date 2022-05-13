@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+$module_name = basename(dirname(__DIR__,1));
+Route::namespace(buildControllerNamespace($module_name))->middleware('web')->group(function ()use ($module_name) {
+    Route::prefix(buildPrefix($module_name, 'frontend'))->namespace('Products'.DS().'frontend')->group(function () {
+        Route::get('/index','ProductController@index')->name('users.product.index');
+
+    });
+
+    Route::prefix(buildPrefix($module_name, 'backend'))->namespace('Products'.DS().'backend')->group(function () {
+        Route::get('/search','ProductController@search')->name('users.product.search');
+    });
+
 });
+
+
+
+
+
+
