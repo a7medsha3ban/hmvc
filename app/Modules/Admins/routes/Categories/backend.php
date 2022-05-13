@@ -14,3 +14,5 @@ Route::resource('category','CategoryController',
         'destroy' => 'category.destroy'
     ]]
 );
+
+Route::post('/search','CategoryController@search')->name('category.search');

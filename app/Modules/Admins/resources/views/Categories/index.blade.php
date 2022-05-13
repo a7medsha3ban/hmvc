@@ -19,7 +19,8 @@
                 <div class="box-header with-border">
                     <h3 class="box-title" style="margin-bottom: 20px">@lang('site.Cities')</h3>
 
-                    <form action="">
+                    <form action="{{route('category.search')}}" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col-md-4">
                                 <input type="text" name="search" class="form-control" placeholder="@lang('site.search')">
@@ -34,46 +35,6 @@
                 </div> {{--   end of box header --}}
 
                 <div class="box-body">
-                    @if(isset($details))
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>@lang('site.name')</th>
-                                <th>@lang('site.created_at')</th>
-                                <th>@lang('site.updated_at')</th>
-                                <th>@lang('site.action')</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($details as $index=> $detail)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $detail->name }}</td>
-                                    <td>{{ $detail->created_at }}</td>
-                                    <td>{{ $detail->updated_at }}</td>
-                                    <td>
-
-                                        <a
-                                            href="{{route('category.edit',$detail->id)}}"
-                                            class="btn btn-sm btn-primary"
-                                            title="Edit">
-                                            <i class="fa fa-edit" style="color: #fff"></i></a>
-
-                                        <form action="{{route('category.destroy',$detail->id)}}" method="post"  style="display: inline-block">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash" style="color: #fff"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>{{-- end of table --}}
-                    @elseif ($categories->count() > 0)
-                        @if (isset($message))
-                            <h2>@lang($message)</h2>
-                        @else
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -107,12 +68,7 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>{{-- end of table --}}
-                        @endif
-                    @else
-                        <h2>@lang('site.no_data_found')</h2>
-                    @endif
                 </div> <!-- end of box body -->
 
 

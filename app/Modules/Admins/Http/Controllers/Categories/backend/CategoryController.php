@@ -7,6 +7,7 @@ use Admins\Http\Requests\Categories\UpdateCategoryRequest;
 use Admins\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -63,5 +64,11 @@ class CategoryController extends Controller
             DB::rollBack();
             toastr()->error('site.delete_failed');
             return redirect()->back();        }
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $categories = Category::where('name','like','%'.$search.'%')->orderBy('id')->paginate(5);
+        return view(buildView('Admins', 'Categories', 'search'),compact('categories'));
     }
 }
